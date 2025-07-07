@@ -1,0 +1,39 @@
+steps:
+  # Build the Docker image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/${PROJECT_ID}/my-portfolio-ssr-app:${COMMIT_SHA}",
+        ".",
+      ]
+    # Replace 'my-portfolio-ssr-app' with a unique name for your Cloud Run service/image
+
+  # Push the Docker image to Google Container Registry (GCR)
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/${PROJECT_ID}/my-portfolio-ssr-app:${COMMIT_SHA}"]
+    # Replace 'my-portfolio-ssr-app' with your unique Cloud Run service/image name
+
+  # Deploy the image to Cloud Run
+  - name: "gcr.io/google.com/cloudsdk/cloud-sdk"
+    args:
+      - gcloud
+      - run
+      - deploy
+      - my-portfolio-ssr-app # Your Cloud Run service name (must be unique within your project)
+      - --image
+      - gcr.io/${PROJECT_ID}/my-portfolio-ssr-app:${COMMIT_SHA}
+      - --region=us-central1 # Choose your desired region (e.g., us-central1, europe-west1)
+      - --platform=managed
+      - --allow-unauthenticated # Allows public access to your web app
+      - --port=8080 # Matches the ENV PORT in your Dockerfile
+    env:
+      - "PROJECT_ID=${PROJECT_ID}" # Ensure PROJECT_ID is available as an environment variable
+      - "COMMIT_SHA=${COMMIT_SHA}" # Ensure COMMIT_SHA is available as an environment variable
+
+options:
+  # Configure logging for Cloud Build.
+  # 'CLOUD_LOGGING_ONLY' sends logs to Cloud Logging, which is generally recommended for debugging.
+  # Alternatively, 'NONE' can be used to generate no logs at all (not recommended for production).
+  logging: CLOUD_LOGGING_ONLY
