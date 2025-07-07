@@ -20,7 +20,7 @@ COPY . .
 # placing them in 'dist/<project-name>/browser' and 'dist/<project-name>/server'
 # respectively, and compiling the server.ts into 'main.js' within the server folder.
 # Ensure 'rossbryson-com' matches your actual Angular project name in angular.json
-RUN npm run build:ssr --output-path=dist/rossbryson-com
+RUN npm run build --output-path=dist/rossbryson-com
 
 # Stage 2: Create the final production image
 FROM node:20-slim
