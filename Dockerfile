@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build:ssr --output-path=dist
+RUN npm run build --output-path=dist
 
 FROM node:20-slim
 
