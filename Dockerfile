@@ -12,15 +12,23 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application source code
-# This includes your Angular components, assets, and the server.ts file
+# This includes your Angular components, assets, server.ts,
+# and crucially, angular.json which defines the project targets and their output paths.
 COPY . .
 
-# Build the Angular application for production with Server-Side Rendering (SSR)
-# The 'npm run build:ssr' command typically handles both browser and server builds,
-# placing them in 'dist/<project-name>/browser' and 'dist/<project-name>/server'
-# respectively, and compiling the server.ts into 'main.js' within the server folder.
-# Ensure 'rossbryson-com' matches your actual Angular project name in angular.json
-RUN npm run build:ssr --output-path=dist/rossbryson-com
+# Build the Angular application for production with Server-Side Rendering (SSR).
+# The 'npm run build:ssr' command (defined in package.json) already orchestrates
+# the necessary Angular CLI commands (e.g., 'ng build', 'ng run <project>:server',
+# and potentially 'ng run <project>:prerender').
+#
+# These individual Angular CLI commands have their specific output paths
+# (like 'dist/rossbryson-com/browser' and 'dist/rossbryson-com/server')
+# configured within your 'angular.json' file.
+#
+# By REMOVING '--output-path=dist/rossbryson-com' from this line, we allow
+# Angular CLI to use its internally defined output paths, preventing conflicts
+# that cause the "Project target does not exist" error after successful builds.
+RUN npm run build:ssr
 
 # Stage 2: Create the final production image
 FROM node:20-slim
@@ -29,9 +37,10 @@ FROM node:20-slim
 WORKDIR /app
 
 # Copy only the necessary build artifacts from the builder stage.
-# We copy the entire 'rossbryson-com' directory which contains
-# both 'browser' (client-side) and 'server' (server-side) bundles.
-# The path in the builder stage is '/app/dist/rossbryson-com'
+# We copy the entire 'rossbryson-com' directory, which contains
+# both the 'browser' (client-side) and 'server' (server-side) bundles,
+# as well as the prerendered HTML files.
+# The path in the builder stage is '/app/dist/rossbryson-com' (as defined implicitly by angular.json)
 # The destination in the final stage is '/app/dist/rossbryson-com'
 COPY --from=builder /app/dist/rossbryson-com /app/dist/rossbryson-com
 
@@ -39,7 +48,8 @@ COPY --from=builder /app/dist/rossbryson-com /app/dist/rossbryson-com
 ENV PORT 8080
 
 # Command to run the Angular Universal server.
-# The 'main.js' file within the 'server' folder of your project's dist output
-# is typically the entry point for the Node.js Express server that serves your SSR app.
+# The 'main.js' file (or 'main.mjs' for ES Modules) within the 'server' folder
+# of your project's dist output is the entry point for the Node.js Express server
+# that serves your SSR application.
 # Ensure this path is correct based on your Angular Universal setup.
 CMD ["node", "dist/rossbryson-com/server/main.js"]
