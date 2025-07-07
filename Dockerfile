@@ -48,8 +48,8 @@ COPY --from=builder /app/dist/rossbryson-com /app/dist/rossbryson-com
 ENV PORT 8080
 
 # Command to run the Angular Universal server.
-# The 'main.js' file (or 'main.mjs' for ES Modules) within the 'server' folder
-# of your project's dist output is the entry point for the Node.js Express server
-# that serves your SSR application.
-# Ensure this path is correct based on your Angular Universal setup.
-CMD ["node", "dist/rossbryson-com/server/main.js"]
+# IMPORTANT: Changed 'main.js' to 'server.mjs' based on your observation.
+# The 'server.mjs' file (compiled from server.ts) is the Node.js Express server
+# that bootstraps and serves your Angular Universal application.
+CMD ["node", "dist/rossbryson-com/server/server.mjs"]
+

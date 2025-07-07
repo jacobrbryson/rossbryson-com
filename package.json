@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:ssr": "ng build && ng run rossbryson-com:server",
-    "serve:ssr": "node dist/rossbryson-com/server/main.js",
+    "serve:ssr": "node dist/rossbryson-com/server/server.mjs",
     "prerender": "ng run rossbryson-com:prerender"
   },
   "private": true,
