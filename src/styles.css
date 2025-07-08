@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Roboto Mono", monospace; /* Apply globally if desired */
+  margin: 0;
+  background-color: #1a202c; /* Ensure body matches blueprint background */
+  color: #e0f2f7; /* Ensure body text matches blueprint text */
+}

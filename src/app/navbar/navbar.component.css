@@ -1,0 +1,173 @@
+/* Blueprint Base Styles */
+:host {
+  /* This targets the host element <app-navbar> */
+  --blueprint-bg: #1a202c; /* Tailwind gray-900 or similar dark blue/black */
+  --blueprint-line: #00eaff; /* Bright cyan/aqua for lines */
+  --blueprint-text: #e0f2f7; /* Off-white/light blue for general text */
+  --blueprint-grid: rgba(0, 234, 255, 0.1); /* Very subtle grid */
+
+  display: block; /* Ensure the host element takes up space */
+  background-color: var(--blueprint-bg);
+  color: var(--blueprint-text);
+  font-family: "Roboto Mono", monospace; /* Consider adding this font to your project */
+  position: relative; /* For the pseudo-element grid */
+  overflow: hidden; /* Ensure drawing animations don't overflow */
+}
+
+/* Optional: Blueprint Grid Background */
+:host::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      to right,
+      var(--blueprint-grid) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px);
+  background-size: 20px 20px; /* Adjust grid size as needed */
+  pointer-events: none; /* Allow clicks through */
+  z-index: 0;
+  opacity: 0.2; /* Make grid subtle */
+}
+
+/* Ensure navbar content is above the grid */
+nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar general styling adjustments */
+nav.bg-gray-800 {
+  background-color: var(--blueprint-bg); /* Override Tailwind */
+  border-bottom: 1px solid var(--blueprint-line); /* Add a subtle line */
+  box-shadow: 0 4px 6px -1px rgba(0, 234, 255, 0.1),
+    /* Glow effect */ 0 2px 4px -2px rgba(0, 234, 255, 0.1);
+}
+
+/* Title Styling */
+a.text-white.font-bold {
+  color: var(
+    --blueprint-line
+  ) !important; /* Make title pop with blueprint color */
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.7); /* Subtle glow */
+  transition: all 0.3s ease-out;
+}
+
+a.text-white.font-bold:hover {
+  text-shadow: 0 0 15px rgba(0, 234, 255, 1);
+  background-color: rgba(0, 234, 255, 0.1) !important;
+}
+
+/* Nav Link Styling (General) */
+.nav-link-base {
+  color: var(--blueprint-text) !important; /* General text color */
+  transition: all 0.3s ease-out;
+  border: 1px solid transparent; /* Prepare for border drawing */
+  position: relative;
+  overflow: hidden; /* Hide overflowing drawing animations */
+}
+
+/* Hover effects for nav links */
+.nav-link-base:hover {
+  color: var(--blueprint-line) !important;
+  background-color: rgba(0, 234, 255, 0.1) !important;
+  /* border-color: var(--blueprint-line); <-- REMOVE THIS LINE, we're animating the pseudo-element border instead */
+  text-shadow: 0 0 5px rgba(0, 234, 255, 0.5);
+}
+
+/* Animation Keyframes for "Drawing In" */
+
+/* For SVG Icons (ng-icon) */
+@keyframes drawIcon {
+  from {
+    stroke-dashoffset: var(--dash-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Initial state for icons (hidden lines) */
+ng-icon {
+  stroke-dasharray: var(--dash-length); /* Set by ng-icons internally */
+  stroke-dashoffset: var(--dash-length); /* Start hidden */
+  animation: drawIcon 1s ease-out forwards; /* Apply on load */
+  stroke: var(--blueprint-line); /* Ensure stroke is visible */
+  fill: none; /* Icons are outlines */
+  transition: stroke 0.3s ease-out, transform 0.3s ease-out; /* Smooth color/transform transition */
+}
+
+ng-icon[name*="hero"] {
+  fill: none;
+  stroke: var(--blueprint-line); /* Initial stroke color */
+  stroke-width: 2; /* Adjust as needed for desired thickness */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hover effect for icons inside nav links - subtle bounce/glow */
+.nav-link-base:hover ng-icon {
+  transform: translateY(-2px) scale(1.05); /* Slight lift and scale */
+  filter: drop-shadow(0 0 5px rgba(0, 234, 255, 0.7)); /* Add a glow */
+}
+
+/* Animation for drawing the links/buttons' pseudo-element border */
+.nav-link-animate {
+  position: relative;
+  overflow: hidden; /* Crucial to hide the pseudo-element before it animates */
+}
+
+.nav-link-animate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--blueprint-line);
+  box-sizing: border-box;
+  transform: scale(0); /* Start scaled down */
+  transform-origin: center;
+  opacity: 0;
+  /* Adjust the transition for a delay */
+  transition: transform 0.4s ease-out 0.2s,
+    /* Delay scale animation by 0.2s */ opacity 0.4s ease-out 0.2s; /* Delay opacity animation by 0.2s */
+  z-index: -1; /* Behind the content */
+}
+
+.nav-link-animate:hover::before {
+  transform: scale(1); /* Expand on hover */
+  opacity: 1;
+  /* No delay on mouse out, so it fades away quickly */
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Animation for the mobile menu button icon */
+button ng-icon {
+  transition: all 0.3s ease-out; /* Smooth transitions for color/transform */
+  stroke: var(--blueprint-line); /* Ensure it's blueprint color */
+  fill: none; /* Make it an outline */
+  stroke-width: 2; /* Adjust thickness */
+}
+
+button:hover ng-icon {
+  transform: scale(1.1); /* Slight pop on hover */
+  color: var(--blueprint-line) !important; /* Maintain color */
+}
+
+/* Mobile Menu Specific Styles */
+.md\\:hidden.mt-4.space-y-2 {
+  border-top: 1px solid var(--blueprint-line); /* Separator line */
+  padding-top: 1rem;
+}
+.md\\:hidden.mt-4.space-y-2 a {
+  border-left: 3px solid transparent; /* For active state or subtle line */
+  padding-left: calc(0.75rem - 3px); /* Adjust padding due to border */
+}
+.md\\:hidden.mt-4.space-y-2 a:hover {
+  border-left-color: var(--blueprint-line); /* Draw line on hover */
+}

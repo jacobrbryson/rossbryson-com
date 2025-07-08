@@ -1,0 +1,25 @@
+<section
+  class="hero-banner-container flex items-center justify-center min-h-[60vh] md:min-h-[80vh] text-center px-4 py-16 relative overflow-hidden"
+>
+  <div class="z-10 relative">
+    <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-bold mb-8 py-4">
+      {{ heroName }}
+    </h1>
+    <p class="hero-tagline text-xl md:text-2xl lg:text-3xl mb-8">
+      {{ tagline }}
+    </p>
+    <button
+      class="hero-cta-button py-3 px-8 text-lg md:text-xl rounded-lg font-semibold relative overflow-hidden"
+    >
+      {{ ctaButtonText }}
+      <ng-icon name="heroArrowRight" class="ml-2 inline-block"></ng-icon>
+    </button>
+  </div>
+
+  <div class="background-animation-lines absolute inset-0 z-0 opacity-20">
+    <span class="line line-1"></span>
+    <span class="line line-2"></span>
+    <span class="line line-3"></span>
+    <span class="line line-4"></span>
+  </div>
+</section>

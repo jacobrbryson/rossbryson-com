@@ -1,0 +1,273 @@
+/* Reusing variables from navbar for consistency or defining them if global */
+:host {
+  --blueprint-bg: #1a202c; /* Tailwind gray-900 or similar dark blue/black */
+  --blueprint-line: #00eaff; /* Bright cyan/aqua for lines */
+  --blueprint-text: #e0f2f7; /* Off-white/light blue for general text */
+  --blueprint-grid: rgba(0, 234, 255, 0.1); /* Very subtle grid */
+  --glow-strong: rgba(0, 234, 255, 0.7);
+  --glow-light: rgba(0, 234, 255, 0.3);
+
+  display: block; /* Important for :host styling */
+  background-color: var(--blueprint-bg);
+  color: var(--blueprint-text);
+  font-family: "Roboto Mono", monospace; /* Ensure this font is globally imported */
+  position: relative;
+  overflow: hidden; /* Crucial for clipping animations */
+}
+
+.hero-banner-container {
+  background-image: linear-gradient(
+      to right,
+      var(--blueprint-grid) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--blueprint-grid) 1px, transparent 1px);
+  background-size: 20px 20px; /* Adjust grid size */
+  background-position: 0 0; /* Ensures grid starts from top-left */
+  border-bottom: 2px solid var(--blueprint-line); /* Stronger bottom border */
+  box-shadow: 0 8px 15px -3px var(--glow-light),
+    0 4px 6px -4px var(--glow-strong);
+}
+
+/* Animation Keyframes for typing and blinking */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Keyframes for caret animations */
+@keyframes blink-caret-border {
+  0%,
+  100% {
+    border-color: transparent;
+  } /* Start and end transparent */
+  50% {
+    border-color: var(--blueprint-line);
+  }
+}
+
+@keyframes blink-caret-content {
+  0%,
+  100% {
+    opacity: 0;
+  } /* Start and end invisible */
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero-title {
+  color: var(--blueprint-line);
+  text-shadow: 0 0 15px var(--glow-strong), 0 0 25px var(--glow-light);
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  max-width: fit-content;
+
+  /* Initial state for the border-right should be transparent */
+  border-right: 0.15em solid transparent;
+
+  animation: typewriter 2.5s steps(25) 0.5s forwards,
+    /* Typewriter effect */
+      /* Caret animation starts after the typewriter delay */ blink-caret-border
+      0.75s step-end 4 forwards; /* Blinks 4 times then stops transparent */
+  animation-delay: 0.5s, 0.5s; /* Both animations start after 0.5s */
+  /* Apply the 0% state of blink-caret-border during its delay */
+  animation-fill-mode: forwards, backwards;
+}
+
+.hero-tagline {
+  color: var(--blueprint-text);
+  text-shadow: 0 0 5px var(--glow-light);
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto 2rem;
+  max-width: fit-content;
+  animation: typewriter 3s steps(35) 3s forwards; /* Typewriter effect for tagline */
+}
+
+.hero-tagline::after {
+  display: inline-block;
+  vertical-align: middle;
+
+  /* REMOVE this direct 'opacity: 0;' - it's redundant and can cause flicker.
+     The 'blink-caret-content' keyframe's 0% state and 'animation-fill-mode: backwards'
+     will handle the initial invisibility. */
+  /* opacity: 0; <-- DELETE THIS LINE */
+
+  animation: blink-caret-content 0.75s step-end 4 forwards; /* Blinks 4 times then stops invisible */
+  animation-delay: 3s; /* Starts when tagline typing starts */
+  /* This is the crucial addition:
+     'forwards' ensures it stays in final state after animation.
+     'backwards' ensures it starts in initial (0%) state during the delay. */
+  animation-fill-mode: forwards, backwards;
+}
+.hero-tagline.animated:after {
+  /* Class to remove caret after animation if added by JS */
+  animation: none;
+  border-right: none;
+}
+/* You might remove the blink-caret animation from tagline if you don't want it to blink after typing */
+/* Or use JS to remove the :after content/animation once animation ends */
+
+/* Call to Action Button */
+.hero-cta-button {
+  background-color: transparent;
+  color: var(--blueprint-line);
+  border: 1px solid transparent; /* Initial transparent border */
+  text-shadow: 0 0 5px var(--glow-light);
+  transition: all 0.3s ease-out;
+  position: relative;
+  box-shadow: 0 0 10px var(--glow-light); /* Initial subtle glow */
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 auto;
+}
+
+/* Button Border Drawing Animation (reusing logic from navbar links) */
+.hero-cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--blueprint-line);
+  box-sizing: border-box;
+  transform: scale(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform 0.5s ease-out 4s,
+    /* Delay by 4s to let text finish */ opacity 0.5s ease-out 4s;
+  z-index: -1;
+  border-radius: 0.5rem; /* Match button border-radius */
+}
+
+.hero-cta-button:hover {
+  background-color: rgba(0, 234, 255, 0.1);
+  text-shadow: 0 0 10px var(--glow-strong);
+  box-shadow: 0 0 20px var(--glow-strong);
+}
+
+.hero-cta-button:hover::before {
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Icon inside CTA button */
+.hero-cta-button ng-icon {
+  stroke: var(--blueprint-line);
+  fill: none;
+  stroke-width: 2;
+  transition: transform 0.3s ease-out;
+  animation: drawIcon 1s ease-out 4.5s forwards; /* Icon also draws in after text */
+  stroke-dasharray: var(--dash-length);
+  stroke-dashoffset: var(--dash-length);
+}
+
+.hero-cta-button:hover ng-icon {
+  transform: translateX(5px); /* Slide icon slightly on hover */
+}
+
+/* Optional: Background animation lines */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: var(--line-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.background-animation-lines {
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.background-animation-lines .line {
+  position: absolute;
+  background-color: var(--blueprint-line); /* Visible line color */
+  opacity: 0.05; /* Very subtle */
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Example lines, adjust positions and animations */
+.line-1 {
+  top: 10%;
+  left: 0%;
+  width: 100%;
+  height: 1px;
+  transform-origin: left;
+  animation: drawLine 8s ease-in-out infinite, scaleX 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+.line-2 {
+  bottom: 20%;
+  right: 0%;
+  width: 100%;
+  height: 1px;
+  transform-origin: right;
+  animation: drawLine 7s ease-in-out infinite, scaleX 7s ease-in-out infinite;
+  animation-delay: 3s;
+}
+.line-3 {
+  top: 0%;
+  left: 30%;
+  width: 1px;
+  height: 100%;
+  transform-origin: top;
+  animation: drawLine 9s ease-in-out infinite, scaleY 9s ease-in-out infinite;
+  animation-delay: 2s;
+}
+.line-4 {
+  bottom: 0%;
+  right: 15%;
+  width: 1px;
+  height: 100%;
+  transform-origin: bottom;
+  animation: drawLine 6s ease-in-out infinite, scaleY 6s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+/* You'd need to define scaleX/scaleY keyframes if using them, or use transform for drawing lines */
+/* A simpler approach for the background lines is just to animate their opacity or a glow */
+@keyframes backgroundFadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.05;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.background-animation-lines .line {
+  background-color: var(--blueprint-line);
+  opacity: 0; /* Start hidden */
+  animation: backgroundFadeIn 5s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--glow-light); /* Add a glow */
+}
+.line-1 {
+  animation-delay: 0s;
+}
+.line-2 {
+  animation-delay: 1.5s;
+}
+.line-3 {
+  animation-delay: 3s;
+}
+.line-4 {
+  animation-delay: 4.5s;
+}
