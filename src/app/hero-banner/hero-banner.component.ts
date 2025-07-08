@@ -16,8 +16,7 @@ import { heroArrowRight } from '@ng-icons/heroicons/outline';
   ],
 })
 export class HeroBannerComponent {
-  // You can define properties here if needed, e.g., for dynamic content
-  heroName = 'Ross Bryson ';
-  tagline = 'Full Stack Developer | Game Enthusiast'; // Customize your tagline
+  heroName = 'Senior Developer';
+  tagline = 'Full Stack | DB Admin | Cloud Architect';
   ctaButtonText = 'Explore My Work';
 }
