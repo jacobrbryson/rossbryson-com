@@ -271,3 +271,29 @@
 .line-4 {
   animation-delay: 4.5s;
 }
+
+@media (max-width: 767px) {
+  .hero-title {
+    /* You can override clamp or set a fixed smaller size */
+    font-size: 2rem; /* Even smaller base font size for very small screens */
+    /* Or, if you want clamp to go even lower: */
+    /* font-size: clamp(2rem, 8vw, 5rem); // Adjust min, vw, max as needed */
+  }
+
+  .hero-tagline {
+    font-size: 1.25rem; /* Equivalent to text-xl, but you can make it smaller */
+    /* Or, if using a custom property for tagline font size: */
+    /* font-size: var(--some-smaller-tagline-font-size); */
+  }
+}
+
+/* Example: For screens smaller than 480px (common phone breakpoint) */
+@media (max-width: 479px) {
+  .hero-title {
+    font-size: 1.8rem; /* Even smaller for tiny phones */
+  }
+
+  .hero-tagline {
+    font-size: 0.8rem; /* Standard body text size */
+  }
+}
