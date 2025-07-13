@@ -1,0 +1,116 @@
+<!-- 
+  File: src/app/portfolio/portfolio-filter/portfolio-filter.component.html
+  Description: The template for the filter component.
+-->
+<div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg shadow-md mb-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+    <!-- Tech Stack Filter -->
+    <div class="flex flex-col">
+      <label
+        for="techStack"
+        class="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+        >Tech Stack</label
+      >
+      <select
+        id="techStack"
+        name="techStack"
+        [(ngModel)]="filters.techStack"
+        (ngModelChange)="onFilterChange()"
+        class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-slate-100"
+      >
+        <option value="all">All Stacks</option>
+        <option *ngFor="let stack of techStacks" [value]="stack">
+          {{ stack }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Technologies Filter -->
+    <div class="flex flex-col">
+      <label
+        for="technology"
+        class="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+        >Technology</label
+      >
+      <select
+        id="technology"
+        name="technology"
+        [(ngModel)]="filters.technology"
+        (ngModelChange)="onFilterChange()"
+        class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-slate-100"
+      >
+        <option value="all">All Technologies</option>
+        <option *ngFor="let tech of technologies" [value]="tech">
+          {{ tech }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Third Party Integrations Filter -->
+    <div class="flex flex-col">
+      <label
+        for="integration"
+        class="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+        >Integrations</label
+      >
+      <select
+        id="integration"
+        name="integration"
+        [(ngModel)]="filters.integration"
+        (ngModelChange)="onFilterChange()"
+        class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-slate-100"
+      >
+        <option value="all">All Integrations</option>
+        <option *ngFor="let int of integrations" [value]="int">
+          {{ int }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Age of Project Filter -->
+    <div class="flex flex-col">
+      <label
+        for="age"
+        class="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+        >Project Age</label
+      >
+      <select
+        id="age"
+        name="age"
+        [(ngModel)]="filters.age"
+        (ngModelChange)="onFilterChange()"
+        class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-slate-100"
+      >
+        <option [ngValue]="0">Any Time</option>
+        <option [ngValue]="1">Last Year</option>
+        <option [ngValue]="2">Last 2 Years</option>
+        <option [ngValue]="5">Last 5 Years</option>
+      </select>
+    </div>
+
+    <!-- Freeform Search -->
+    <div class="flex flex-col lg:col-span-1">
+      <label
+        for="searchTerm"
+        class="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300"
+        >Search</label
+      >
+      <div class="relative">
+        <input
+          type="text"
+          id="searchTerm"
+          name="searchTerm"
+          [(ngModel)]="filters.searchTerm"
+          (ngModelChange)="onFilterChange()"
+          placeholder="e.g., Real-time dashboard"
+          class="w-full bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm py-2 pl-10 pr-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-slate-100"
+        />
+        <div
+          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+        >
+          <ng-icon name="heroMagnifyingGlass" class="text-slate-400"></ng-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
