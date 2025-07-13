@@ -1,0 +1,43 @@
+/* Styles for screen display */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Base styling for the resume container */
+.max-w-4xl {
+  max-width: 56rem; /* Equivalent to max-w-4xl in Tailwind */
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.sm\:p-6 {
+  padding: 1.5rem; /* For small screens and up */
+}
+
+.md\:p-8 {
+  padding: 2rem; /* For medium screens and up */
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif; /* Ensure Inter font is loaded or fallback */
+}

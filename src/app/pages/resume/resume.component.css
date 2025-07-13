@@ -1,0 +1,139 @@
+/* Styles for screen display */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Base styling for the resume container */
+.max-w-4xl {
+  max-width: 56rem; /* Equivalent to max-w-4xl in Tailwind */
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.sm\:p-6 {
+  padding: 1.5rem; /* For small screens and up */
+}
+
+.md\:p-8 {
+  padding: 2rem; /* For medium screens and up */
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif; /* Ensure Inter font is loaded or fallback */
+}
+
+/* Print-specific styles */
+@media print {
+  /* Reset default body/html margins and padding for print */
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    /* Set a white background for print to save ink */
+    background-color: #fff !important;
+  }
+
+  /* Target the outermost container of the resume page */
+  .min-h-screen {
+    min-height: auto !important; /* Allow content to flow naturally */
+    padding: 0 !important; /* Remove all padding from this container */
+    background-color: #fff !important; /* Ensure background is white */
+  }
+
+  /* Target the main content wrapper inside the outermost container */
+  .max-w-4xl {
+    max-width: 100% !important; /* Make it full width */
+    margin: 0 !important; /* Remove all margins */
+    box-shadow: none !important; /* Remove shadows */
+    border-radius: 0 !important; /* Remove rounded corners */
+    padding: 0 !important; /* Remove all padding from this container */
+    background-color: #fff !important; /* Ensure background is white */
+  }
+
+  /* Target all padding classes within the print media query and set to 0 */
+  .p-4,
+  .sm\:p-6,
+  .md\:p-8,
+  .p-6,
+  .sm\:p-8,
+  .md\:p-10 {
+    padding: 0 !important; /* Remove all padding from these elements */
+  }
+
+  /* Ensure background is white for any remaining elements that might have it */
+  .bg-gray-100,
+  .bg-white {
+    background-color: #fff !important;
+  }
+
+  /* Hide elements not needed in print */
+  .app-navbar {
+    display: none !important;
+  }
+
+  /* Ensure text is black for readability */
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  span {
+    color: #000 !important;
+  }
+
+  /* Remove borders that might look bad in print */
+  .border-b,
+  .border-l-4 {
+    border: none !important;
+  }
+
+  /* Ensure list styles are simple and clear */
+  ul.list-disc {
+    list-style-type: disc !important;
+    margin-left: 1.2em !important; /* Add some left margin for bullets */
+  }
+
+  /* Adjust line heights for better readability in print */
+  p,
+  li {
+    line-height: 1.4 !important;
+  }
+
+  /* Ensure page breaks are handled gracefully for sections */
+  section {
+    page-break-inside: avoid; /* Avoid breaking sections across pages */
+    page-break-after: auto; /* Allow page breaks after sections */
+  }
+
+  /* Ensure headings stay with their content */
+  h1,
+  h2,
+  h3,
+  h4 {
+    page-break-after: avoid;
+  }
+}

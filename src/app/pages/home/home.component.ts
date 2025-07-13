@@ -6,7 +6,7 @@ import {
   heroCube,
   heroRocketLaunch,
 } from '@ng-icons/heroicons/outline';
-import { HeroBannerComponent } from '../hero-banner/hero-banner.component'; // Import the hero banner
+import { HeroBannerComponent } from '../../shared/hero-banner/hero-banner.component'; // Import the hero banner
 
 @Component({
   selector: 'app-home',

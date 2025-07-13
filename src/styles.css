@@ -10,3 +10,11 @@ body {
   background-color: #1a202c; /* Ensure body matches blueprint background */
   color: #e0f2f7; /* Ensure body text matches blueprint text */
 }
+
+@media print {
+  .app-navbar {
+    display: none !important;
+  }
+  /* You can also add other global print-specific styles here if needed,
+     like setting default font sizes or colors for print across the app. */
+}

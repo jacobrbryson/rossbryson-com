@@ -1,0 +1,109 @@
+<div class="min-h-screen bg-gray-100 p-4 font-inter">
+  <div
+    class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 sm:p-8 md:p-10"
+  >
+    <!-- Header Section -->
+    <header class="text-center mb-8 pb-4 border-b border-gray-200">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">
+        {{ personalInfo.name }}
+      </h1>
+      <p class="text-lg text-gray-600">{{ personalInfo.title }}</p>
+      <div
+        class="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-4 text-gray-700 text-sm"
+      >
+        <span>{{ personalInfo.location }}</span>
+        <span>{{ personalInfo.phone }}</span>
+        <span>{{ personalInfo.email }}</span>
+        <!-- Add LinkedIn/GitHub if you have public links -->
+        <!-- <span *ngIf="personalInfo.linkedin">LinkedIn: {{ personalInfo.linkedin }}</span> -->
+        <!-- <span *ngIf="personalInfo.github">GitHub: {{ personalInfo.github }}</span> -->
+      </div>
+    </header>
+
+    <!-- Programming Technology Expertise Section -->
+    <section class="mb-8">
+      <h2
+        class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-500 pb-1"
+      >
+        Programming Technology Expertise
+      </h2>
+      <p class="text-gray-700">{{ programmingSkills }}</p>
+    </section>
+
+    <!-- Additional Technology Expertise Section -->
+    <section class="mb-8">
+      <h2
+        class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-500 pb-1"
+      >
+        Additional Technology Expertise
+      </h2>
+      <p class="text-gray-700">{{ additionalSkills }}</p>
+    </section>
+
+    <!-- Summary of Qualifications Section -->
+    <section class="mb-8">
+      <h2
+        class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-500 pb-1"
+      >
+        Summary of Qualifications
+      </h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-1">
+        <li *ngFor="let qual of summaryQualifications">{{ qual }}</li>
+      </ul>
+    </section>
+
+    <!-- Selected Successes Section -->
+    <section class="mb-8">
+      <h2
+        class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-500 pb-1"
+      >
+        Selected Successes
+      </h2>
+      <ul class="list-disc list-inside text-gray-700 space-y-1">
+        <li *ngFor="let success of selectedSuccesses">
+          {{ success.description }}
+        </li>
+      </ul>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section class="mb-8">
+      <h2
+        class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-500 pb-1"
+      >
+        Professional Experience
+      </h2>
+
+      <div class="mb-6" *ngFor="let job of professionalExperience">
+        <h3 class="text-xl font-semibold text-gray-800">
+          {{ job.title }}
+        </h3>
+        <p class="text-blue-600">{{ job.company }} &bull; {{ job.location }}</p>
+        <p class="text-gray-500 text-sm mb-2">{{ job.dates }}</p>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+          <li *ngFor="let responsibility of job.responsibilities">
+            {{ responsibility }}
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section>
+      <h2
+        class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-500 pb-1"
+      >
+        Education
+      </h2>
+      <div class="mb-4" *ngFor="let edu of education">
+        <h3 class="text-xl font-semibold text-gray-800">
+          {{ edu.degree }}
+        </h3>
+        <p class="text-blue-600">
+          {{ edu.institution }}
+        </p>
+        <p class="text-gray-500 text-sm">{{ edu.location }}, {{ edu.date }}</p>
+      </div>
+    </section>
+  </div>
+</div>
