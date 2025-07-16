@@ -10,7 +10,6 @@ import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 
 export interface PortfolioFilter {
-  techStack: string;
   technology: string;
   integration: string;
   age: number; // in years, 0 for all
@@ -26,14 +25,12 @@ export interface PortfolioFilter {
   providers: [provideIcons({ heroMagnifyingGlass })],
 })
 export class PortfolioFilterComponent {
-  @Input() techStacks: string[] = [];
   @Input() technologies: string[] = [];
   @Input() integrations: string[] = [];
 
   @Output() filterChange = new EventEmitter<PortfolioFilter>();
 
   filters: PortfolioFilter = {
-    techStack: 'all',
     technology: 'all',
     integration: 'all',
     age: 0,

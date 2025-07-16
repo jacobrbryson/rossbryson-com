@@ -1,1 +1,109 @@
-<app-portfolio-filter />
+<section id="portfolio" class="py-16 md:py-24 bg-slate-900 text-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+        My Work & Projects
+      </h2>
+      <p class="mt-3 text-lg text-slate-400 max-w-2xl mx-auto">
+        Here's a selection of projects demonstrating my skills in web
+        development.
+      </p>
+    </div>
+
+    <app-portfolio-filter
+      [technologies]="uniqueTechnologies"
+      [integrations]="uniqueIntegrations"
+      (filterChange)="onFilterChanged($event)"
+    ></app-portfolio-filter>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      @for (project of allProjects; track project.id) {
+      <div
+        class="group bg-slate-800/50 border border-slate-700 rounded-lg shadow-lg transition-all duration-300 hover:shadow-sky-500/20 hover:border-sky-700 flex flex-col"
+      >
+        <img
+          [src]="project.imageUrl"
+          [alt]="'Screenshot of ' + project.title"
+          class="w-full h-48 object-cover"
+        />
+
+        <div class="p-6 flex flex-col flex-grow">
+          <div class="text-right mb-3">
+            <span class="text-xs text-slate-400">{{
+              project.projectDate | date : "MMMM yyyy"
+            }}</span>
+          </div>
+
+          <h3 class="text-xl font-bold text-slate-100 mb-2">
+            {{ project.title }}
+          </h3>
+          <p class="text-slate-300 text-sm flex-grow">
+            {{ project.description }}
+          </p>
+
+          <div class="mt-6 pt-4 border-t border-slate-700">
+            <div class="flex items-center justify-start gap-6 mb-4">
+              @if (project.liveUrl) {
+              <a
+                [href]="project.liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 font-semibold transition-colors"
+              >
+                Live Demo
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+              } @if (project.repoUrl) {
+              <a
+                [href]="project.repoUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-slate-400 hover:text-white font-semibold transition-colors"
+              >
+                View Code
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  />
+                </svg>
+              </a>
+              }
+            </div>
+
+            <div class="flex flex-wrap gap-2">
+              @for (tech of project.technologies; track tech) {
+              <span
+                class="bg-slate-700 text-slate-300 text-xs font-medium px-3 py-1 rounded-full"
+                >{{ tech }}</span
+              >
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
