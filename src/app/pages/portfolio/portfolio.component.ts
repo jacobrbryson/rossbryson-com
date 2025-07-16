@@ -55,6 +55,7 @@ export class PortfolioComponent implements OnInit {
       integrations: ['Amazon API', 'Jet.com API', 'Akamai CDN'],
       projectDate: new Date('2018-01-15'),
       imageUrl: 'https://placehold.co/600x400/475569/ffffff?text=Heels.com',
+      liveUrl: 'https://heels.com',
     },
     {
       id: 3,
