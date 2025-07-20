@@ -24,6 +24,7 @@ export interface PortfolioProject {
   styleUrl: './portfolio.component.css',
 })
 export class PortfolioComponent implements OnInit {
+  private imgRoot = 'images/';
   allProjects: PortfolioProject[] = [
     {
       id: 1,
@@ -43,18 +44,18 @@ export class PortfolioComponent implements OnInit {
         'Google Cloud Run',
       ],
       projectDate: new Date('2022-06-01'),
-      imageUrl: 'https://placehold.co/600x400/1e293b/ffffff?text=Admin+',
+      imageUrl: `${this.imgRoot}admin-plus-logo.svg`,
       liveUrl: 'https://admin-plus.trafera.app',
     },
     {
       id: 2,
-      title: 'Heels.com E-Commerce Platform',
+      title: 'Heels.com E-Commerce Site',
       description:
         'Supported a large-scale e-commerce site handling 20,000 daily visitors. My role focused on the PHP backend, database management, and third-party marketplace API integrations.',
       technologies: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS'],
       integrations: ['Amazon API', 'Jet.com API', 'Akamai CDN'],
       projectDate: new Date('2018-01-15'),
-      imageUrl: 'https://placehold.co/600x400/475569/ffffff?text=Heels.com',
+      imageUrl: `${this.imgRoot}heelscom_logo.png`,
       liveUrl: 'https://heels.com',
     },
     {
@@ -65,18 +66,18 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Node.js', 'EJS', 'Google Cloud Platform'],
       integrations: ['Google Sheets API'],
       projectDate: new Date('2023-10-01'),
-      imageUrl: 'https://placehold.co/600x400/1e293b/ffffff?text=Check-in+App',
+      imageUrl: `${this.imgRoot}eb-logo-medium.png`,
       liveUrl: 'https://checkin.loudounemptybowls.org/',
     },
     {
       id: 4,
-      title: 'New America (Game)',
+      title: 'New America',
       description:
         "A multiplayer remake of the classic 1993 game 'Project Visitor,' featuring a modern game client and a custom backend for multiplayer services hosted on GCP.",
       technologies: ['Unity', 'C#', 'Node.js', 'Express', 'MySQL', 'GCP'],
       integrations: ['Photon Engine', 'Steamworks API'],
       projectDate: new Date('2025-07-15'),
-      imageUrl: 'https://placehold.co/600x400/475569/ffffff?text=New+America',
+      imageUrl: `${this.imgRoot}logo-og-games.svg`,
       liveUrl: 'https://store.steampowered.com/app/1594280/New_America',
     },
     {
@@ -87,19 +88,18 @@ export class PortfolioComponent implements OnInit {
       technologies: ['ColdFusion', 'SQL Server', 'HTML', 'CSS'],
       integrations: ['MySchoolBucks API'],
       projectDate: new Date('2019-08-01'),
-      imageUrl:
-        'https://placehold.co/600x400/1e293b/ffffff?text=Payment+Central',
+      imageUrl: `${this.imgRoot}lsr7glogo.svg`,
       liveUrl: 'https://paymentcentral.lsr7.org/?store',
     },
     {
       id: 6,
-      title: 'Cabin Escape (Game)',
+      title: 'Cabin Escape',
       description:
         'Developed and published a puzzle-based mystery game on the Steam store. Built entirely within the Unity game engine using C#.',
       technologies: ['Unity', 'C#'],
       integrations: ['Steamworks API'],
       projectDate: new Date('2024-05-20'),
-      imageUrl: 'https://placehold.co/600x400/475569/ffffff?text=Cabin+Escape',
+      imageUrl: `${this.imgRoot}logo-og-games.svg`,
       liveUrl: 'https://store.steampowered.com/app/3150770/Cabin_Escape/',
     },
     {
@@ -110,40 +110,40 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Ionic', 'Angular', 'TypeScript'],
       integrations: [],
       projectDate: new Date('2023-01-01'),
-      imageUrl: 'https://placehold.co/600x400/1e293b/ffffff?text=Orcwood.com',
+      imageUrl: `${this.imgRoot}logo-og-games.svg`,
       liveUrl: 'https://orcwood.com/',
     },
     {
       id: 8,
-      title: 'g2t.app',
+      title: 'Get2Training',
       description:
         'A full-stack web application built with Angular and a Node.js Express backend, demonstrating practical application of a modern web stack.',
       technologies: ['Angular', 'Node.js', 'Express', 'MySQL'],
       integrations: [],
       projectDate: new Date('2021-05-15'),
-      imageUrl: 'https://placehold.co/600x400/475569/ffffff?text=g2t.app',
+      imageUrl: `${this.imgRoot}G2T.svg`,
       liveUrl: 'https://g2t.app/',
     },
     {
       id: 9,
-      title: 'Kate Ferguson - Author Site',
+      title: 'Kate Ferguson - eCommerce Site',
       description:
         'A professional website for an author, built on the Symfony PHP framework to manage content and provide information to readers.',
       technologies: ['Symfony PHP', 'MySQL', 'HTML/CSS'],
       integrations: [],
       projectDate: new Date('2020-01-01'),
-      imageUrl: 'https://placehold.co/600x400/1e293b/ffffff?text=Kate+Ferguson',
+      imageUrl: `${this.imgRoot}logo-kate-ferguson.png`,
       liveUrl: 'https://kate-ferguson.com/',
     },
     {
       id: 10,
-      title: 'Loudoun Empty Bowls - Charity Site',
+      title: 'Loudoun Empty Bowls - Website',
       description:
         'The main public-facing website for the Loudoun Empty Bowls charity, built on WordPress for easy content management by the organization.',
       technologies: ['WordPress', 'PHP', 'MySQL'],
       integrations: [],
       projectDate: new Date('2019-01-01'),
-      imageUrl: 'https://placehold.co/600x400/475569/ffffff?text=LEB.org',
+      imageUrl: `${this.imgRoot}eb-logo-medium.png`,
       liveUrl: 'https://loudounemptybowls.org/',
     },
   ];

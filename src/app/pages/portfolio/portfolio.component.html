@@ -21,11 +21,15 @@
       <div
         class="group bg-slate-800/50 border border-slate-700 rounded-lg shadow-lg transition-all duration-300 hover:shadow-sky-500/20 hover:border-sky-700 flex flex-col"
       >
-        <img
-          [src]="project.imageUrl"
-          [alt]="'Screenshot of ' + project.title"
-          class="w-full h-48 object-cover"
-        />
+        <div
+          class="w-full h-48 p-5 bg-white overflow-hidden flex items-center justify-center"
+        >
+          <img
+            [src]="project.imageUrl"
+            [alt]="'Screenshot of ' + project.title"
+            class="max-sh-full w-full object-contain"
+          />
+        </div>
 
         <div class="p-6 flex flex-col flex-grow">
           <div class="text-right mb-3">
