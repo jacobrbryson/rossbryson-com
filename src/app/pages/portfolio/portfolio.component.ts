@@ -18,8 +18,8 @@ export interface PortfolioProject {
 }
 @Component({
   selector: 'app-portfolio',
-  standalone: true, // Make sure standalone is true
-  imports: [PortfolioFilterComponent, DatePipe], // 2. Add DatePipe here
+  standalone: true,
+  imports: [PortfolioFilterComponent, DatePipe],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
@@ -66,7 +66,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Node.js', 'EJS', 'Google Cloud Platform'],
       integrations: ['Google Sheets API'],
       projectDate: new Date('2023-10-01'),
-      imageUrl: `${this.imgRoot}eb-logo-medium.png`,
+      imageUrl: `${this.imgRoot}leb-check-in.png`,
       liveUrl: 'https://checkin.loudounemptybowls.org/',
     },
     {
@@ -77,7 +77,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Unity', 'C#', 'Node.js', 'Express', 'MySQL', 'GCP'],
       integrations: ['Photon Engine', 'Steamworks API'],
       projectDate: new Date('2025-07-15'),
-      imageUrl: `${this.imgRoot}logo-og-games.svg`,
+      imageUrl: `${this.imgRoot}new-america.png`,
       liveUrl: 'https://store.steampowered.com/app/1594280/New_America',
     },
     {
@@ -99,7 +99,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Unity', 'C#'],
       integrations: ['Steamworks API'],
       projectDate: new Date('2024-05-20'),
-      imageUrl: `${this.imgRoot}logo-og-games.svg`,
+      imageUrl: `${this.imgRoot}cabin-escape.png`,
       liveUrl: 'https://store.steampowered.com/app/3150770/Cabin_Escape/',
     },
     {
@@ -147,6 +147,7 @@ export class PortfolioComponent implements OnInit {
       liveUrl: 'https://loudounemptybowls.org/',
     },
   ];
+  filteredProjects: PortfolioProject[] = [];
 
   // You'll also need to get the unique values for the dropdowns
   uniqueTechStacks: string[] = [];
@@ -154,6 +155,14 @@ export class PortfolioComponent implements OnInit {
   uniqueIntegrations: string[] = [];
 
   ngOnInit() {
+    // Sort projects by date in descending order
+    this.allProjects.sort(
+      (a, b) => b.projectDate.getTime() - a.projectDate.getTime()
+    );
+
+    // Initially, show all sorted projects
+    this.filteredProjects = [...this.allProjects]; // <-- Add this line
+
     this.uniqueTechnologies = [
       ...new Set(this.allProjects.flatMap((p) => p.technologies)),
     ];
@@ -164,7 +173,35 @@ export class PortfolioComponent implements OnInit {
 
   // You will use this method in the parent component's template
   onFilterChanged(filters: PortfolioFilter) {
-    console.log('Filters received from child:', filters);
-    // Next, we will implement the logic to filter `allProjects`
+    let tempProjects = [...this.allProjects];
+
+    if (filters.searchTerm) {
+      const searchTerm = filters.searchTerm.toLowerCase();
+      tempProjects = tempProjects.filter(
+        (p) =>
+          p.title.toLowerCase().includes(searchTerm) ||
+          p.description.toLowerCase().includes(searchTerm)
+      );
+    }
+
+    if (filters.technology !== 'all') {
+      tempProjects = tempProjects.filter((p) =>
+        p.technologies.includes(filters.technology)
+      );
+    }
+
+    if (filters.integration !== 'all') {
+      tempProjects = tempProjects.filter((p) =>
+        p.integrations.includes(filters.integration)
+      );
+    }
+
+    if (filters.age > 0) {
+      const cutoffDate = new Date();
+      cutoffDate.setFullYear(cutoffDate.getFullYear() - filters.age);
+      tempProjects = tempProjects.filter((p) => p.projectDate >= cutoffDate);
+    }
+
+    this.filteredProjects = tempProjects;
   }
 }
