@@ -44,7 +44,7 @@ export class PortfolioComponent implements OnInit {
         'Google Cloud Run',
       ],
       projectDate: new Date('2022-06-01'),
-      imageUrl: `${this.imgRoot}admin-plus-logo.svg`,
+      imageUrl: `${this.imgRoot}admin-plus-logo.png`,
       liveUrl: 'https://admin-plus.trafera.app',
     },
     {
@@ -88,7 +88,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['ColdFusion', 'SQL Server', 'HTML', 'CSS'],
       integrations: ['MySchoolBucks API'],
       projectDate: new Date('2019-08-01'),
-      imageUrl: `${this.imgRoot}lsr7glogo.svg`,
+      imageUrl: `${this.imgRoot}lsr7glogo.png`,
       liveUrl: 'https://paymentcentral.lsr7.org/?store',
     },
     {
@@ -110,7 +110,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Ionic', 'Angular', 'TypeScript'],
       integrations: [],
       projectDate: new Date('2023-01-01'),
-      imageUrl: `${this.imgRoot}logo-og-games.svg`,
+      imageUrl: `${this.imgRoot}logo-og-games.png`,
       liveUrl: 'https://orcwood.com/',
     },
     {
@@ -121,7 +121,7 @@ export class PortfolioComponent implements OnInit {
       technologies: ['Angular', 'Node.js', 'Express', 'MySQL'],
       integrations: [],
       projectDate: new Date('2021-05-15'),
-      imageUrl: `${this.imgRoot}G2T.svg`,
+      imageUrl: `${this.imgRoot}G2T.png`,
       liveUrl: 'https://g2t.app/',
     },
     {
