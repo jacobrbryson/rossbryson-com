@@ -35,12 +35,12 @@ export class NavbarComponent {
     {
       label: 'Vivacity Tech',
       path: '/vivacity-tech',
-      icon: 'heroWrenchScrewdriver',
+      img: '/images/logo-v-white.png',
     },
     {
       label: 'Orcwood Games',
       path: '/orcwood-games',
-      icon: 'heroPuzzlePiece',
+      img: '/images/og-icon.png',
     },
   ];
 

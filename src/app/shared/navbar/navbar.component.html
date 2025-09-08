@@ -28,7 +28,16 @@
         ariaCurrentWhenActive="page"
         class="nav-link-base nav-link-animate text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center whitespace-nowrap group"
       >
+        <img
+          *ngIf="link.img"
+          [src]="link.img"
+          [alt]="link.label + ' icon'"
+          class="group-hover:text-white mr-2"
+          width="12"
+          height="12"
+        />
         <ng-icon
+          *ngIf="!link.img"
           [name]="link.icon"
           class="h-5 w-5 mr-2 text-gray-400 group-hover:text-white"
           [attr.data-animate]="true"
@@ -46,7 +55,15 @@
       ariaCurrentWhenActive="page"
       class="nav-link-base nav-link-animate block text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium flex items-center group"
     >
+      <img
+        *ngIf="link.img"
+        [src]="link.img"
+        [alt]="link.label + ' icon'"
+        class="h-6 w-6 mr-3 text-gray-400 group-hover:text-white"
+      />
+
       <ng-icon
+        *ngIf="!link.img"
         [name]="link.icon"
         class="h-6 w-6 mr-3 text-gray-400 group-hover:text-white"
         [attr.data-animate]="true"
