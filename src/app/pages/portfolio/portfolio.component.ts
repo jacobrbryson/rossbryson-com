@@ -15,6 +15,7 @@ export interface PortfolioProject {
   imageUrl: string;
   liveUrl?: string;
   repoUrl?: string;
+  repoLinks?: { label: string; url: string }[];
 }
 @Component({
   selector: 'app-portfolio',
@@ -68,6 +69,12 @@ export class PortfolioComponent implements OnInit {
       projectDate: new Date('2023-10-01'),
       imageUrl: `${this.imgRoot}leb-check-in.png`,
       liveUrl: 'https://checkin.loudounemptybowls.org/',
+      repoLinks: [
+        {
+          label: 'GitHub',
+          url: 'https://github.com/jacobrbryson/leb.bryson.tech',
+        },
+      ],
     },
     {
       id: 4,
@@ -79,6 +86,12 @@ export class PortfolioComponent implements OnInit {
       projectDate: new Date('2025-07-15'),
       imageUrl: `${this.imgRoot}new-america.png`,
       liveUrl: 'https://store.steampowered.com/app/1594280/New_America',
+      repoLinks: [
+        {
+          label: 'API',
+          url: 'https://github.com/jacobrbryson/api-new-america',
+        },
+      ],
     },
     {
       id: 5,
@@ -112,6 +125,12 @@ export class PortfolioComponent implements OnInit {
       projectDate: new Date('2023-01-01'),
       imageUrl: `${this.imgRoot}logo-og-games.png`,
       liveUrl: 'https://orcwood.com/',
+      repoLinks: [
+        {
+          label: 'GitHub',
+          url: 'https://github.com/jacobrbryson/orcwood-com',
+        },
+      ],
     },
     {
       id: 8,
@@ -123,6 +142,16 @@ export class PortfolioComponent implements OnInit {
       projectDate: new Date('2021-05-15'),
       imageUrl: `${this.imgRoot}G2T.png`,
       liveUrl: 'https://g2t.app/',
+      repoLinks: [
+        {
+          label: 'Web App',
+          url: 'https://github.com/Get2Training/www.get2training.com',
+        },
+        {
+          label: 'API',
+          url: 'https://github.com/Get2Training/api.get2training.com',
+        },
+      ],
     },
     {
       id: 9,
@@ -145,6 +174,55 @@ export class PortfolioComponent implements OnInit {
       projectDate: new Date('2019-01-01'),
       imageUrl: `${this.imgRoot}eb-logo-medium.png`,
       liveUrl: 'https://loudounemptybowls.org/',
+    },
+    {
+      id: 11,
+      title: 'Athena Learning App',
+      description:
+        'Athena is a learning companion that flips the script by having kids teach the AI what they know, helping cement knowledge, build confidence, and drive true mastery.',
+      technologies: [
+        'Angular 20',
+        'Tailwind CSS',
+        'Node.js',
+        'Unity 6',
+        'WebSockets',
+        'MySQL',
+      ],
+      integrations: ['Gemini', 'Google OAuth'],
+      projectDate: new Date('2025-10-01'),
+      imageUrl: `${this.imgRoot}athena_logo.png`,
+      liveUrl: 'https://athena-learning.app',
+      repoLinks: [
+        {
+          label: 'Web App',
+          url: 'https://github.com/jacobrbryson/athena',
+        },
+        {
+          label: 'Proxy API',
+          url: 'https://github.com/jacobrbryson/athena-proxy-api',
+        },
+        {
+          label: 'Core API',
+          url: 'https://github.com/jacobrbryson/athena-core-api',
+        },
+      ],
+    },
+    {
+      id: 12,
+      title: 'Family Chores App',
+      description:
+        'A gamified family chores app that makes completing tasks fun and rewarding for kids while helping parents stay organized through a Google Tasks integration and customizable rewards.',
+      technologies: ['Next.js', 'Firestore', 'WebSockets'],
+      integrations: ['Google OAuth', 'Google Tasks'],
+      projectDate: new Date('2026-01-01'),
+      imageUrl: `${this.imgRoot}family-chores-logo.png`,
+      liveUrl: 'https://family-chores.app',
+      repoLinks: [
+        {
+          label: 'GitHub',
+          url: 'https://github.com/jacobrbryson/chores-game',
+        },
+      ],
     },
   ];
   filteredProjects: PortfolioProject[] = [];
