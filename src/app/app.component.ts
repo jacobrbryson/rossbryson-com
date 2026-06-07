@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SeoService } from './shared/seo.service';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @Component({
@@ -13,4 +14,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 export class AppComponent {
   title = 'Portfolio';
   currentDate = new Date(); // <-- Add this line
+
+  constructor(private readonly seoService: SeoService) {
+    this.seoService.initialize();
+  }
 }
