@@ -44,21 +44,21 @@ export const routes: Routes = [
     title: 'Ross Bryson | Resume',
     data: {
       seo: {
-        title: 'Ross Bryson | Software Engineer Resume',
+        title: 'Jacob Ross Bryson | Engineering Leader Resume',
         description:
-          'Review Ross Bryson’s software engineering resume, including full-stack development, cloud architecture, database, leadership, and game development experience.',
+          'Explore Jacob Ross Bryson’s engineering leadership experience across software platforms, cloud architecture, PostgreSQL, security, and distributed teams.',
         path: '/resume',
         image: '/images/profile.jpg',
         type: 'profile',
         jsonLd: {
           '@context': 'https://schema.org',
           '@type': 'ProfilePage',
-          name: 'Ross Bryson Software Engineer Resume',
+          name: 'Jacob Ross Bryson Engineering Leader Resume',
           url: 'https://rossbryson.com/resume',
           about: {
             '@type': 'Person',
-            name: 'Ross Bryson',
-            jobTitle: 'Software Engineer',
+            name: 'Jacob Ross Bryson',
+            jobTitle: 'Senior Full Stack Developer - Tech Lead',
           },
         },
       },
@@ -90,10 +90,10 @@ export const routes: Routes = [
   {
     path: 'vivacity-tech',
     component: VivacityTechComponent,
-    title: 'Ross Bryson | Senior Developer at Vivacity Tech',
+    title: 'Ross Bryson | Senior Full Stack Developer - Tech Lead at Vivacity Tech',
     data: {
       seo: {
-        title: 'Ross Bryson | K-12 Technology Developer at Vivacity Tech',
+        title: 'Ross Bryson | Senior Full Stack Developer - Tech Lead at Vivacity Tech',
         description:
           'Learn about Ross Bryson’s work building K-12 technology platforms, Chromebook lifecycle tools, Google for Education integrations, and asset management systems.',
         path: '/vivacity-tech',

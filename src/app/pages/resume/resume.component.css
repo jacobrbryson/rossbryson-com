@@ -1,139 +1,214 @@
-/* Styles for screen display */
-.min-h-screen {
+.resume-page {
   min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+  background: #0f172a;
 }
 
-/* Base styling for the resume container */
-.max-w-4xl {
-  max-width: 56rem; /* Equivalent to max-w-4xl in Tailwind */
+.resume {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #1f2937;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+  box-shadow: 0 18px 45px rgb(0 0 0 / 18%);
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.resume-header {
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #2563eb;
 }
 
-.bg-white {
-  background-color: #ffffff;
+.resume h1 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
 }
 
-.shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.resume-title {
+  margin: 0.6rem 0 0;
+  color: #1d4ed8;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-top: 1rem;
+  color: #4b5563;
+  font-size: 0.9rem;
+  font-style: normal;
 }
 
-.p-4 {
-  padding: 1rem;
+.contact-details a {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.sm\:p-6 {
-  padding: 1.5rem; /* For small screens and up */
+.resume-section {
+  margin-top: 2rem;
 }
 
-.md\:p-8 {
-  padding: 2rem; /* For medium screens and up */
+.resume-section h2 {
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #cbd5e1;
+  color: #111827;
+  font-size: 1.3rem;
+  line-height: 1.3;
 }
 
-.font-inter {
-  font-family: "Inter", sans-serif; /* Ensure Inter font is loaded or fallback */
+.resume-section p {
+  margin: 0.6rem 0 0;
 }
 
-/* Print-specific styles */
+.skills-list {
+  margin: 0;
+}
+
+.skills-list > div {
+  display: grid;
+  grid-template-columns: minmax(10rem, 12rem) 1fr;
+  gap: 0.25rem 1rem;
+  padding: 0.42rem 0;
+}
+
+.skills-list dt {
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.skills-list dd {
+  margin: 0;
+}
+
+.job {
+  margin-top: 1.6rem;
+}
+
+.job-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+
+.job h3,
+.education h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.job .job-company,
+.education p {
+  margin-top: 0.12rem;
+}
+
+.job-company {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.job .job-dates {
+  flex-shrink: 0;
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.88rem;
+}
+
+.job .job-overview {
+  margin-top: 0.55rem;
+}
+
+.job ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.35rem;
+}
+
+.job li + li {
+  margin-top: 0.35rem;
+}
+
+.education-meta {
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 40rem) {
+  .skills-list > div,
+  .job-heading {
+    display: block;
+  }
+
+  .job .job-dates {
+    margin-top: 0.2rem;
+  }
+}
+
 @media print {
-  /* Reset default body/html margins and padding for print */
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
+  :host {
+    display: block;
   }
 
-  body {
-    /* Set a white background for print to save ink */
-    background-color: #fff !important;
+  .resume-page {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
   }
 
-  /* Target the outermost container of the resume page */
-  .min-h-screen {
-    min-height: auto !important; /* Allow content to flow naturally */
-    padding: 0 !important; /* Remove all padding from this container */
-    background-color: #fff !important; /* Ensure background is white */
+  .resume {
+    max-width: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 10pt;
+    line-height: 1.38;
   }
 
-  /* Target the main content wrapper inside the outermost container */
-  .max-w-4xl {
-    max-width: 100% !important; /* Make it full width */
-    margin: 0 !important; /* Remove all margins */
-    box-shadow: none !important; /* Remove shadows */
-    border-radius: 0 !important; /* Remove rounded corners */
-    padding: 0 !important; /* Remove all padding from this container */
-    background-color: #fff !important; /* Ensure background is white */
+  .resume-header {
+    padding-bottom: 0.7rem;
   }
 
-  /* Target all padding classes within the print media query and set to 0 */
-  .p-4,
-  .sm\:p-6,
-  .md\:p-8,
-  .p-6,
-  .sm\:p-8,
-  .md\:p-10 {
-    padding: 0 !important; /* Remove all padding from these elements */
+  .resume h1 {
+    font-size: 22pt;
   }
 
-  /* Ensure background is white for any remaining elements that might have it */
-  .bg-gray-100,
-  .bg-white {
-    background-color: #fff !important;
+  .resume-section {
+    margin-top: 1rem;
   }
 
-  /* Hide elements not needed in print */
-  .app-navbar {
-    display: none !important;
+  .resume-section h2 {
+    margin-bottom: 0.4rem;
   }
 
-  /* Ensure text is black for readability */
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  li,
-  span {
-    color: #000 !important;
+  .job {
+    margin-top: 0.8rem;
+    break-inside: auto;
   }
 
-  /* Remove borders that might look bad in print */
-  .border-b,
-  .border-l-4 {
-    border: none !important;
+  .job-heading,
+  .education,
+  .skills-list > div,
+  .job li {
+    break-inside: avoid;
   }
 
-  /* Ensure list styles are simple and clear */
-  ul.list-disc {
-    list-style-type: disc !important;
-    margin-left: 1.2em !important; /* Add some left margin for bullets */
+  .resume h2,
+  .resume h3 {
+    break-after: avoid;
   }
 
-  /* Adjust line heights for better readability in print */
-  p,
-  li {
-    line-height: 1.4 !important;
-  }
-
-  /* Ensure page breaks are handled gracefully for sections */
-  section {
-    page-break-inside: avoid; /* Avoid breaking sections across pages */
-    page-break-after: auto; /* Allow page breaks after sections */
-  }
-
-  /* Ensure headings stay with their content */
-  h1,
-  h2,
-  h3,
-  h4 {
-    page-break-after: avoid;
+  .contact-details a {
+    color: inherit;
+    text-decoration: none;
   }
 }
