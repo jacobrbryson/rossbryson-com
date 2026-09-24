@@ -90,19 +90,19 @@ export const routes: Routes = [
   {
     path: 'vivacity-tech',
     component: VivacityTechComponent,
-    title: 'Ross Bryson | Senior Full Stack Developer - Tech Lead at Vivacity Tech',
+    title: 'Ross Bryson | Engineering Dream at Vivacity Tech',
     data: {
       seo: {
-        title: 'Ross Bryson | Senior Full Stack Developer - Tech Lead at Vivacity Tech',
+        title: 'Ross Bryson | Engineering Dream at Vivacity Tech',
         description:
-          'Learn about Ross Bryson’s work building K-12 technology platforms, Chromebook lifecycle tools, Google for Education integrations, and asset management systems.',
+          'Explore how Ross Bryson leads engineering for Dream at Vivacity Tech: millions of managed devices, Google telemetry, cloud architecture, and enterprise integrations.',
         path: '/vivacity-tech',
         image: '/images/logo-v-white.png',
         type: 'article',
         jsonLd: {
           '@context': 'https://schema.org',
           '@type': 'Article',
-          headline: 'Ross Bryson at Vivacity Tech',
+          headline: 'Engineering Dream: Ross Bryson at Vivacity Tech',
           url: 'https://rossbryson.com/vivacity-tech',
           author: {
             '@type': 'Person',
@@ -114,28 +114,33 @@ export const routes: Routes = [
   },
   {
     path: 'orcwood-games',
+    redirectTo: 'orcwood',
+    pathMatch: 'full',
+  },
+  {
+    path: 'orcwood',
     component: OrcwoodGamesComponent,
-    title: 'Ross Bryson | Owner of Orcwood Games',
+    title: 'Ross Bryson | Founder of Orcwood Games LLC',
     data: {
       seo: {
-        title: 'Ross Bryson | Owner and Game Developer at Orcwood Games',
+        title: 'Ross Bryson | Founder of Orcwood Games LLC',
         description:
-          'Learn about Ross Bryson’s work as owner of Orcwood Games, including Unity development, game studio leadership, product strategy, and published game projects.',
-        path: '/orcwood-games',
+          'Explore Ross Bryson’s entrepreneurial work as founder of Orcwood Games LLC, connecting studio leadership, hands-on engineering, and games that bring people together.',
+        path: '/orcwood',
         image: '/images/og-icon.png',
         type: 'article',
         jsonLd: {
           '@context': 'https://schema.org',
           '@type': 'Article',
-          headline: 'Ross Bryson and Orcwood Games',
-          url: 'https://rossbryson.com/orcwood-games',
+          headline: 'Building Games, Building a Studio: Ross Bryson at Orcwood Games',
+          url: 'https://rossbryson.com/orcwood',
           author: {
             '@type': 'Person',
             name: 'Ross Bryson',
           },
           about: {
             '@type': 'Organization',
-            name: 'Orcwood Games',
+            name: 'Orcwood Games LLC',
             url: 'https://orcwood.com/',
           },
         },

@@ -18,6 +18,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
+    path: 'orcwood',
+    renderMode: RenderMode.Prerender
+  },
+  {
     path: 'orcwood-games',
     renderMode: RenderMode.Prerender
   },

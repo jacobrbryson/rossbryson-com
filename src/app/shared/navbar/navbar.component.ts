@@ -39,7 +39,7 @@ export class NavbarComponent {
     },
     {
       label: 'Orcwood Games',
-      path: '/orcwood-games',
+      path: '/orcwood',
       img: '/images/og-icon.png',
     },
   ];
